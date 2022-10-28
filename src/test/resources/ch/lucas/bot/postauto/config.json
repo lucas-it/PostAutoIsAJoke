@@ -1,0 +1,8 @@
+{
+    "openTransportDataApiKey": "",
+    "twitterConsumerKey": "123",
+    "twitterConsumerSecret": "456",
+    "twitterAccessToken": "789",
+    "twitterAccessTokenSecret": "abc",
+    "allowTweeting": false
+}
