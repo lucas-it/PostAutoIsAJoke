@@ -1,8 +1,8 @@
 name: Deploy tag
 
 on:
-  push:
-      tags:
+  workflow_dispatch:
+    tags:
       - v*
 
 jobs:
