@@ -1,8 +1,8 @@
 name: Deploy master branch
 
 on:
-  push:
-      tags:
+  workflow_dispatch:
+    tags:
       - v*
 
 jobs:
