@@ -4,7 +4,7 @@
 
     <groupId>ch.lucas.bot.postauto</groupId>
     <artifactId>PostAutoIsAJoke</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3-SNAPSHOT</version>
 
     <packaging>jar</packaging>
 
@@ -31,7 +31,7 @@
         <connection>scm:git:${project.scm.url}</connection>
         <developerConnection>scm:git:${project.scm.url}</developerConnection>
         <url>git@github.com:lucas-it/PostAutoIsAJoke.git</url>
-        <tag>v1.0.2</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <profiles>
