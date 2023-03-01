@@ -126,7 +126,7 @@ public class OpenTransportDataApiUtils {
     private DisruptionStats getDisruptionStats() throws IOException {
         // Obtaining late travels
         LOGGER.info("getDisruptionStats - Initialize connection to OpenTransportData API");
-        HttpURLConnection con = createConnectionToAPI("SELECT count(*) as \"nbrOfDelayedTravels\", round(avg(EXTRACT(EPOCH FROM TO_TIMESTAMP(\"AN_PROGNOSE\", 'DD.MM.YYYY hh24:mi:ss') - TO_TIMESTAMP(\"ANKUNFTSZEIT\", 'DD.MM.YYYY hh24:mi:ss'))::int)) as \"avgDelayPerBus\", sum(EXTRACT(EPOCH FROM TO_TIMESTAMP(\"AN_PROGNOSE\", 'DD.MM.YYYY hh24:mi:ss') - TO_TIMESTAMP(\"ANKUNFTSZEIT\", 'DD.MM.YYYY hh24:mi:ss'))) as \"cumulativeLate\" from \"" + resourceId + "\" WHERE \"PRODUKT_ID\" = 'Bus' AND \"BETREIBER_NAME\" = 'PostAuto AG' AND EXTRACT(EPOCH FROM TO_TIMESTAMP(\"AN_PROGNOSE\", 'DD.MM.YYYY hh24:mi:ss') - TO_TIMESTAMP(\"ANKUNFTSZEIT\", 'DD.MM.YYYY hh24:mi:ss')) >= 180 AND \"ABFAHRTSZEIT\" IS NULL");
+        HttpURLConnection con = createConnectionToAPI("SELECT count(*) as \"nbrOfDelayedTravels\", round(avg(date_part('epoch', TO_TIMESTAMP(\"AN_PROGNOSE\", 'DD.MM.YYYY hh24:mi:ss') - TO_TIMESTAMP(\"ANKUNFTSZEIT\", 'DD.MM.YYYY hh24:mi:ss'))::int)) as \"avgDelayPerBus\", sum(date_part('epoch', TO_TIMESTAMP(\"AN_PROGNOSE\", 'DD.MM.YYYY hh24:mi:ss') - TO_TIMESTAMP(\"ANKUNFTSZEIT\", 'DD.MM.YYYY hh24:mi:ss'))) as \"cumulativeLate\" from \"" + resourceId + "\" WHERE \"PRODUKT_ID\" = 'Bus' AND \"BETREIBER_NAME\" = 'PostAuto AG' AND date_part('epoch', TO_TIMESTAMP(\"AN_PROGNOSE\", 'DD.MM.YYYY hh24:mi:ss') - TO_TIMESTAMP(\"ANKUNFTSZEIT\", 'DD.MM.YYYY hh24:mi:ss')) >= 180 AND \"ABFAHRTSZEIT\" IS NULL");
 
         // Parse JSON
         LOGGER.info("getDisruptionStats - Read API response");
